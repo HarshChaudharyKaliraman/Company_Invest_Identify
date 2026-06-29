@@ -13,8 +13,10 @@ import axios from "axios";
 import LoadingState from "./components/LoadingState.jsx";
 import ResultCard from "./components/ResultCard.jsx";
 
-// Backend URL — where we send our research requests
-const BACKEND_URL = "http://localhost:5000/api/research";
+// Backend URL — uses environment variable in production, falls back to localhost for dev
+const BACKEND_URL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api/research`
+  : "http://localhost:5000/api/research";
 
 // Some example companies the user can click to try
 const SUGGESTED_COMPANIES = ["Apple", "Tesla", "Zomato", "Reliance", "OpenAI"];
